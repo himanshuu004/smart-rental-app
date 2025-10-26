@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+</head>
+<body>
+    <h1>Firebase Connection Test</h1>
+    <div id="status">Testing Firebase connection...</div>
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyCGrxtUS4Z3hrX4FoDB3T6ZaPa1WtGsiNE",
+            authDomain: "smart-rental-app-fa657.firebaseapp.com",
+            projectId: "smart-rental-app-fa657",
+            storageBucket: "smart-rental-app-fa657.firebasestorage.app",
+            messagingSenderId: "45853668305",
+            appId: "1:45853668305:web:e9a997df51a71287c5e6f0",
+            measurementId: "G-1HNREY2DZP"
+        };
+        
+        try {
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
+            
+            document.getElementById('status').innerHTML = '✅ Firebase connected successfully!<br>✅ Authentication ready<br>✅ Firestore ready';
+            document.getElementById('status').style.color = 'green';
+        } catch (error) {
+            document.getElementById('status').innerHTML = '❌ Firebase connection failed: ' + error.message;
+            document.getElementById('status').style.color = 'red';
+        }
+    </script>
+</body>
+</html>

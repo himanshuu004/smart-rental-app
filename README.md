@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+# Smart Rental Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple and lightweight React + Tailwind CSS web application for managing rental properties with Firebase authentication and database.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 🔐 Firebase Authentication (Sign up/Sign in)
+- 🏠 Property Management (Add, View, Delete properties)
+- 📊 Dashboard with property status tracking
+- 💰 Rent tracking
+- 👥 Tenant management
+- 📱 Responsive design with Tailwind CSS
 
-### `npm start`
+## Setup Instructions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Firebase Configuration ✅ COMPLETED
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+✅ **Firebase is already configured!** Your project `smart-rental-app-fa657` is ready to use.
 
-### `npm test`
+**Next steps:**
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Select your project: `smart-rental-app-fa657`
+3. Enable Authentication (Email/Password) in Authentication > Sign-in method
+4. Enable Firestore Database in Firestore Database
+5. Set up security rules (see Security Rules section below)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Install Dependencies
 
-### `npm run build`
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. Start Development Server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The app will open at `http://localhost:3000`
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. **Sign Up**: Create a new account with email and password
+2. **Sign In**: Use your credentials to access the dashboard
+3. **Add Properties**: Click "Add Property" to add new rental properties
+4. **Manage Properties**: View, update, or delete existing properties
+5. **Track Status**: Monitor occupancy status and tenant information
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- React 18 with TypeScript
+- Tailwind CSS for styling
+- Firebase Authentication
+- Firestore Database
+- React Context for state management
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Project Structure
 
-## Learn More
+```
+src/
+├── components/
+│   ├── Auth.tsx          # Authentication component
+│   └── Dashboard.tsx     # Main dashboard
+├── contexts/
+│   └── AuthContext.tsx   # Authentication context
+├── firebase.ts           # Firebase configuration
+├── App.tsx              # Main app component
+└── index.css            # Tailwind CSS imports
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Security Rules
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Make sure to set up proper Firestore security rules:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /properties/{document} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
+
+## License
+
+MIT License
